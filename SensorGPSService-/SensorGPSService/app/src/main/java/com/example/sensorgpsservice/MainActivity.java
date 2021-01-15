@@ -275,7 +275,7 @@ public class MainActivity extends AppCompatActivity {
                 (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         if (activityManager != null){
             for (ActivityManager.RunningServiceInfo service : activityManager.getRunningServices(Integer.MAX_VALUE)) {
-                if (LocationServices.class.getName().equals(service.service.getClassName())){
+                if (LocationService.class.getName().equals(service.service.getClassName())){
                     if (service.foreground){
                         return true;
                     }
@@ -287,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void startLocationService(){
         if (!isLocationServiceRunning()){
-            Intent intent = new Intent(getApplicationContext(), LocationServices.class);
+            Intent intent = new Intent(getApplicationContext(), LocationService.class);
             intent.setAction(Constants.ACTION_START_LOCATION_SERVICE);
             startService(intent);
             Toast.makeText(this, "Location Service Started", Toast.LENGTH_SHORT).show();
